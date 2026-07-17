@@ -4,13 +4,12 @@ from datetime import datetime
 
 app = FastAPI(
     title="AI Investment Radar",
-    description="Crypto + Forex AI Market Intelligence System",
     version="0.1"
 )
 
 
 @app.get("/")
-def root():
+def home():
 
     return {
         "system": "AI Investment Radar",
@@ -19,8 +18,15 @@ def root():
     }
 
 
-@app.get("/market")
+@app.get("/health")
+def health():
 
+    return {
+        "status": "ok"
+    }
+
+
+@app.get("/market")
 def market():
 
     return {
@@ -43,19 +49,27 @@ def market():
                 "symbol": "ETH",
                 "price": 3500,
                 "score": 76,
-                "trend": "neutral"
+                "trend": "neutral",
+                "reason": [
+                    "Stable ecosystem",
+                    "Moderate demand"
+                ]
             }
 
         ],
 
 
-        "forex":[
+        "forex": [
 
             {
-                "symbol":"EUR/USD",
-                "price":1.09,
-                "score":75,
-                "trend":"neutral"
+                "symbol": "EUR/USD",
+                "price": 1.09,
+                "score": 75,
+                "trend": "neutral",
+                "reason": [
+                    "USD pressure",
+                    "Macro uncertainty"
+                ]
             }
 
         ]
