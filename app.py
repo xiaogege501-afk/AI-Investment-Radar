@@ -1,3 +1,4 @@
+from scoring import analyze_market
 from crypto import get_market
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
@@ -143,9 +144,54 @@ def home():
 @app.get("/api/crypto")
 def crypto():
 
+    market=get_market()
+
+
+    result=[]
+
+
+    for coin in market:
+
+
+        change=(
+
+            coin["price"]
+
+            -
+
+            coin["open24h"]
+
+        ) / coin["open24h"] *100
+
+
+
+        analysis=analyze_market(change)
+
+
+
+        result.append({
+
+            "symbol":
+            coin["symbol"],
+
+
+            "price":
+            coin["price"],
+
+
+            "change":
+            round(change,2),
+
+
+            "analysis":
+            analysis
+
+        })
+
+
     return {
 
-        "market":get_market()
+        "market":result
 
     }
 def status():
