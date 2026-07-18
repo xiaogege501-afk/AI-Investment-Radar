@@ -28,17 +28,15 @@ def get_crypto_price(symbol):
         ticker = data["data"][0]
 
 
-        return {
+       return {
 
-            "symbol":symbol,
+"symbol":symbol,
 
-            "price":float(ticker["last"]),
+"price":float(ticker["last"]),
 
-            "change":
+"open24h":float(ticker["open24h"])
 
-            ticker["open24h"]
-
-        }
+}
 
 
     return None
