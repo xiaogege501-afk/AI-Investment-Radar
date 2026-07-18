@@ -204,17 +204,38 @@ def status():
         "status":"running"
 
     }
-    @app.get("/api/report")
+@app.get("/api/report")
 def report():
 
-    market=get_market()
+    sample_data = {
+
+        "market": "Crypto",
+
+        "assets": [
+
+            {
+                "symbol":"BTC",
+                "score":82,
+                "trend":"bullish"
+            },
+
+            {
+                "symbol":"ETH",
+                "score":76,
+                "trend":"neutral"
+            }
+
+        ]
+
+    }
+
+
+    result = generate_report(sample_data)
 
 
     return {
 
-        "report":
-
-        generate_report(market)
+        "report": result
 
     }
 
