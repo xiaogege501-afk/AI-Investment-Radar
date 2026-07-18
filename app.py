@@ -1,3 +1,4 @@
+from ai import generate_report
 from scoring import analyze_market
 from crypto import get_market
 from fastapi import FastAPI
@@ -203,3 +204,17 @@ def status():
         "status":"running"
 
     }
+    @app.get("/api/report")
+def report():
+
+    market=get_market()
+
+
+    return {
+
+        "report":
+
+        generate_report(market)
+
+    }
+
