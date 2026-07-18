@@ -1,3 +1,4 @@
+from crypto import get_market
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
 
@@ -139,6 +140,14 @@ def home():
 
 
 @app.get("/api/status")
+@app.get("/api/crypto")
+def crypto():
+
+    return {
+
+        "market":get_market()
+
+    }
 def status():
 
     return {
